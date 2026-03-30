@@ -1,0 +1,212 @@
+// StreamReaper — Prisma Schema
+// Database: Supabase (PostgreSQL)
+//
+// Setup:
+//   1. Supabase → Project Settings → Database → Connection string
+//   2. Set DATABASE_URL (Transaction pooler, port 6543, ?pgbouncer=true) and
+//      DIRECT_URL (Direct, port 5432) in .env.local
+//   3. Prisma CLI reads .env by default; use: npm run db:migrate (loads .env.local)
+//      or: npx dotenv -e .env.local -- npx prisma migrate dev --name init
+//   4. npx prisma generate
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // Supabase requires this for migrations (bypasses connection pooler)
+}
+
+// ─── Users ───────────────────────────────────────────────────────────────────
+
+model User {
+  id                   String    @id @default(uuid())
+  email                String?   @unique
+  discordId            String?   @unique @map("discord_id")
+  discordUsername       String?   @map("discord_username")
+  discordWebhookUrl    String?   @map("discord_webhook_url")
+  emailNotifications   Boolean   @default(true) @map("email_notifications")
+  discordNotifications Boolean   @default(true) @map("discord_notifications")
+  subscriptionTier     String    @default("free") @map("subscription_tier") // "free" | "premium"
+  subscriptionExpiresAt DateTime? @map("subscription_expires_at")
+  stripeCustomerId     String?   @unique @map("stripe_customer_id")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+
+  riotAccounts RiotAccount[]
+  encounters   Encounter[]
+  seasonStats  SeasonStats[]
+  adImpressions AdImpression[]
+
+  @@map("users")
+}
+
+// ─── Riot Accounts ───────────────────────────────────────────────────────────
+
+model RiotAccount {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  puuid     String   @unique // Permanent unique identifier from Riot
+  gameName  String   @map("game_name")
+  tagLine   String   @map("tag_line")
+  region    String   @default("na") // na, eu, ap, kr
+  linkedAt  DateTime @default(now()) @map("linked_at")
+
+  // RSO tokens (populated after Phase 4)
+  rsoAccessToken  String? @map("rso_access_token")
+  rsoRefreshToken String? @map("rso_refresh_token")
+  rsoExpiresAt    DateTime? @map("rso_expires_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([puuid])
+  @@map("riot_accounts")
+}
+
+// ─── Streamers ───────────────────────────────────────────────────────────────
+
+model Streamer {
+  id                String   @id @default(uuid())
+  twitchUserId      String   @unique @map("twitch_user_id")
+  twitchUsername     String   @map("twitch_username")
+  twitchDisplayName  String   @map("twitch_display_name")
+  riotPuuid         String   @unique @map("riot_puuid")
+  gameName          String   @map("game_name")
+  tagLine           String   @map("tag_line")
+  region            String   @default("na")
+  avgViewers        Int      @default(0) @map("avg_viewers")
+  broadcasterType   String   @default("") @map("broadcaster_type") // partner, affiliate, ""
+  isActive          Boolean  @default(true) @map("is_active")
+  peripheralsJson   Json?    @map("peripherals_json") // { mouse, keyboard, headset, monitor, affiliateUrls }
+  selfRegistered    Boolean  @default(false) @map("self_registered")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  encounters Encounter[]
+
+  @@index([riotPuuid])
+  @@index([twitchUsername])
+  @@map("streamers")
+}
+
+// ─── Processed Matches (deduplication) ───────────────────────────────────────
+
+model ProcessedMatch {
+  id          String   @id @default(uuid())
+  matchId     String   @unique @map("match_id") // Riot match ID — ensures we never process twice
+  processedAt DateTime @default(now()) @map("processed_at")
+
+  @@index([matchId])
+  @@map("processed_matches")
+}
+
+// ─── Encounters ──────────────────────────────────────────────────────────────
+
+model Encounter {
+  id                  String    @id @default(uuid())
+  userId              String    @map("user_id")
+  streamerId          String    @map("streamer_id")
+  matchId             String    @map("match_id") // Riot match ID
+  encounterType       String    @map("encounter_type") // kill, death, ace, clutch, flawless
+  roundNumber         Int?      @map("round_number")
+  weapon              String?   // Weapon used (from finishingDamage.damageItem)
+  damageType          String?   @map("damage_type") // Weapon, Bomb, Ability, etc.
+  mapId               String?   @map("map_id")
+  matchScore          String?   @map("match_score") // e.g. "13-7"
+  interestingnessScore Int      @default(0) @map("interestingness_score") // Higher = more notable
+  vodUrl              String?   @map("vod_url") // Full Twitch VOD deep link with timestamp
+  vodTimestampOffset  Int?      @map("vod_timestamp_offset") // Offset in seconds
+  vodAvailable        Boolean   @default(false) @map("vod_available")
+  notificationSent    Boolean   @default(false) @map("notification_sent")
+  adViewsCount        Int       @default(0) @map("ad_views_count")
+  clipDownloaded      Boolean   @default(false) @map("clip_downloaded")
+  createdAt           DateTime  @default(now()) @map("created_at")
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  streamer Streamer @relation(fields: [streamerId], references: [id])
+
+  notificationLogs NotificationLog[]
+  adImpressions    AdImpression[]
+
+  @@index([userId])
+  @@index([streamerId])
+  @@index([matchId])
+  @@index([userId, createdAt])
+  @@map("encounters")
+}
+
+// ─── Notification Log ────────────────────────────────────────────────────────
+
+model NotificationLog {
+  id          String   @id @default(uuid())
+  encounterId String   @map("encounter_id")
+  channel     String   // "discord" | "email"
+  status      String   @default("pending") // pending, sent, failed
+  errorMessage String? @map("error_message")
+  sentAt      DateTime? @map("sent_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  encounter Encounter @relation(fields: [encounterId], references: [id], onDelete: Cascade)
+
+  @@index([encounterId])
+  @@map("notification_log")
+}
+
+// ─── Seasons ─────────────────────────────────────────────────────────────────
+
+model Season {
+  id        String   @id @default(uuid())
+  name      String   // e.g. "Season 1: Episode 10 Act 1"
+  startDate DateTime @map("start_date")
+  endDate   DateTime @map("end_date")
+  isActive  Boolean  @default(false) @map("is_active")
+
+  seasonStats SeasonStats[]
+
+  @@map("seasons")
+}
+
+// ─── Season Stats ────────────────────────────────────────────────────────────
+
+model SeasonStats {
+  id               String  @id @default(uuid())
+  userId           String  @map("user_id")
+  seasonId         String  @map("season_id")
+  totalEncounters  Int     @default(0) @map("total_encounters")
+  streamersKilled  Int     @default(0) @map("streamers_killed")
+  aces             Int     @default(0)
+  clutches         Int     @default(0)
+  deaths           Int     @default(0) // Times killed by a streamer
+  bestEncounterId  String? @map("best_encounter_id") // Highest interestingness score
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  season Season @relation(fields: [seasonId], references: [id])
+
+  @@unique([userId, seasonId])
+  @@index([userId])
+  @@index([seasonId])
+  @@map("season_stats")
+}
+
+// ─── Ad Impressions ──────────────────────────────────────────────────────────
+
+model AdImpression {
+  id              String   @id @default(uuid())
+  encounterId     String   @map("encounter_id")
+  userId          String   @map("user_id")
+  adType          String   @map("ad_type") // "view_gate" | "download_gate"
+  completed       Boolean  @default(false)
+  revenueEstimate Decimal? @map("revenue_estimate") @db.Decimal(10, 4) // Estimated revenue in GBP
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  encounter Encounter @relation(fields: [encounterId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([encounterId])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("ad_impressions")
+}

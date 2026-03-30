@@ -2,17 +2,27 @@
   "name": "streamreaper",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "test:riot": "tsx src/scripts/testRiot.ts"
+    "test:riot": "tsx src/scripts/testRiot.ts",
+    "test:twitch": "tsx src/scripts/testTwitch.ts",
+    "test:discord": "tsx src/scripts/testDiscord.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "dotenv -e .env.local -- prisma migrate dev",
+    "db:seed": "dotenv -e .env.local -- prisma db seed"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.2",
     "axios": "^1.14.0",
     "dotenv": "^17.3.1",
     "next": "15.5.14",
+    "prisma": "^6.19.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -22,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.14",
     "tailwindcss": "^4",
