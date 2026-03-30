@@ -292,7 +292,7 @@ export default function Home() {
           {/* Simple mailto CTA for now — replace with a proper form later */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="https://discord.gg/streamreaper"
+              href="https://discord.gg/kUqP2xN7"
               className="px-8 py-3.5 bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold rounded-lg transition-colors duration-200 text-base flex items-center justify-center gap-2"
             >
               <svg
