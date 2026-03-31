@@ -11,7 +11,7 @@ export default function LoginPage() {
   async function signInWithDiscord() {
     setLoading(true);
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: "discord",
+      provider: 'discord',
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
