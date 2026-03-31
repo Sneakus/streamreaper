@@ -1,6 +1,12 @@
+import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-[#e8e8ec] overflow-hidden">
       {/* ── Ambient glow effect ── */}
@@ -16,10 +22,10 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-6">
           <Link
-            href="/login"
+            href={user ? "/dashboard" : "/login"}
             className="text-sm text-[#9ca3af] hover:text-[#e8e8ec] transition-colors duration-200"
           >
-            Sign in
+            {user ? "Dashboard" : "Sign in"}
           </Link>
           <a
             href="#waitlist"
