@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import LinkRiotAccount from "./link-riot-account";
+import NotificationPreferences from "./notification-preferences";
 import { SignOutButton } from "./sign-out-button";
 
 function discordDisplayName(user: User): string {
@@ -84,6 +85,10 @@ export default async function DashboardPage() {
 
         <div className="mt-12">
           <LinkRiotAccount />
+        </div>
+
+        <div className="mt-12">
+          <NotificationPreferences />
         </div>
 
         <section className="mt-12 rounded-xl border border-[#1e1e2e] bg-[#12121a] p-8">
