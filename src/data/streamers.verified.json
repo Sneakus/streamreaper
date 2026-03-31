@@ -1,0 +1,523 @@
+{
+  "_meta": {
+    "description": "StreamReaper streamer database seed. Riot IDs change frequently — always verify via API before trusting. PUUIDs are permanent once resolved.",
+    "lastUpdated": "2026-03-30",
+    "verificationScript": "src/scripts/verifyStreamers.ts",
+    "notes": [
+      "Riot IDs with team tags (e.g. 'SEN TenZ') change when players switch orgs",
+      "Streamers often have multiple accounts — prioritise their main/stream account",
+      "Run verifyStreamers.ts to resolve gameName#tagLine → PUUID via Riot API",
+      "PUUID is the only stable identifier — once resolved, store it permanently",
+      "Twitch userIds can be fetched via twitchApi.getUserByLogin(twitchUsername)",
+      "Peripherals sourced from prosettings.net, streamer bios, and sponsor pages"
+    ],
+    "lastVerified": "2026-03-31T10:43:58.909Z",
+    "twitchResolved": 25,
+    "twitchFailed": 0,
+    "riotResolved": 14,
+    "riotFailed": 11
+  },
+  "streamers": [
+    {
+      "twitchUsername": "tarik",
+      "displayName": "tarik",
+      "riotId": {
+        "gameName": "tarik",
+        "tagLine": "1337",
+        "verified": true
+      },
+      "region": "na",
+      "twitchUserId": "36340781",
+      "puuid": "wvzOB7Kd2kF-e0-onxMcGeBRyIQ-3jsStiaf1Kon4RHs8djwyeF3yAosb42EOlQ_kWn5rWNqZn3LSg",
+      "avgViewers": 30000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Logitech G Pro X Superlight 2",
+        "keyboard": "Wooting 60HE",
+        "headset": "HyperX Cloud III Wireless",
+        "monitor": "BenQ ZOWIE XL2546K"
+      }
+    },
+    {
+      "twitchUsername": "tenz",
+      "displayName": "TenZ",
+      "riotId": {
+        "gameName": "SEN TenZ",
+        "tagLine": "0505",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "SEN TenZ",
+          "tagLine": "81619"
+        },
+        {
+          "gameName": "SEN TenZ",
+          "tagLine": "51770"
+        },
+        {
+          "gameName": "TenZ",
+          "tagLine": "00005"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "70225218",
+      "puuid": "fuxH_e3uTnKVzyFIfJhGZHonqdTa23d6Gzq33W7VpR-w-X3_M-_OqMuTr1XSpNGWJHsBcEGsvHrFMw",
+      "avgViewers": 15000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Finalmouse UltralightX",
+        "keyboard": "Wooting 60HE",
+        "headset": "HyperX Cloud Alpha",
+        "monitor": "ASUS ROG Swift 360Hz PG259QN"
+      }
+    },
+    {
+      "twitchUsername": "shroud",
+      "displayName": "shroud",
+      "riotId": {
+        "gameName": "shroud",
+        "tagLine": "7877",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "SEN Shroud",
+          "tagLine": "1111"
+        },
+        {
+          "gameName": "SEN shroud",
+          "tagLine": "7877"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "37402112",
+      "puuid": "B1rY11hLUKGiKhNRhis1048kjYXTJ9_tGg4UtgafuieRCMTlCcF-b3tsBeKOYmFO9zNnJcfM63X1bQ",
+      "avgViewers": 12000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Logitech G Pro X Superlight 2",
+        "keyboard": "HyperX Alloy Origins",
+        "headset": "HyperX Cloud Alpha",
+        "monitor": "BenQ ZOWIE XL2546K"
+      }
+    },
+    {
+      "twitchUsername": "kyedae",
+      "displayName": "Kyedae",
+      "riotId": {
+        "gameName": "Kyedae",
+        "tagLine": "81619",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "kyedae",
+          "tagLine": "tzgf"
+        },
+        {
+          "gameName": "TenZsPet",
+          "tagLine": "meow"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "445529741",
+      "puuid": "e61WDERhRhe2dVHlpKMGm7e96FlEzV0ULXwY9SuDB8oU5VarJgt00e8tJlYVcJYw9pWsz-_k3uhS5Q",
+      "avgViewers": 8000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Finalmouse UltralightX",
+        "keyboard": "Wooting 60HE",
+        "headset": null,
+        "monitor": null
+      }
+    },
+    {
+      "twitchUsername": "s0mcs",
+      "displayName": "s0m",
+      "riotId": {
+        "gameName": "s0m",
+        "tagLine": "katie",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "NRG s0m",
+          "tagLine": "ktwon"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "128002336",
+      "puuid": "j5hPbV0WAC4034EnB4JY9cQljRYiKsU3fwq8laN8oY_F2HwFcfiTSCYoS2h1PCQbGnZzVCVhaAiRJw",
+      "avgViewers": 8000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Logitech G Pro X Superlight",
+        "keyboard": "HyperX Alloy Origins 60",
+        "headset": "HyperX Cloud II",
+        "monitor": "BenQ ZOWIE XL2546K"
+      }
+    },
+    {
+      "twitchUsername": "shahzam",
+      "displayName": "ShahZaM",
+      "riotId": {
+        "gameName": "SEN ShahZaM",
+        "tagLine": "huh",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "SEN ShahZaM",
+          "tagLine": "ice"
+        },
+        {
+          "gameName": "SEN ShahZaM",
+          "tagLine": "301"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "38433240",
+      "puuid": "XDen9jWE-R4B7qSxu3N9_S6I5KnFYoThXLLzYTkn7ojHAUkrItzZbWC5DA3u0j7oyXvTOHcZSHNQug",
+      "avgViewers": 5000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Logitech G Pro X Superlight",
+        "keyboard": "SteelSeries Apex Pro Mini",
+        "headset": "SteelSeries Arctis Nova Pro",
+        "monitor": "BenQ ZOWIE XL2546K"
+      }
+    },
+    {
+      "twitchUsername": "gofns",
+      "displayName": "FNS",
+      "riotId": {
+        "gameName": "NRG FNS",
+        "tagLine": "daddy",
+        "verified": true
+      },
+      "region": "na",
+      "twitchUserId": "66418614",
+      "puuid": "kgktVW6HItbirr7UHAlgLL7psBu0LGrb5uCMtHgSGuPWygV9uprfZtvCMFMk4LU7s26cu0zJQXZOQA",
+      "avgViewers": 6000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Logitech G Pro X Superlight 2",
+        "keyboard": "Wooting 60HE",
+        "headset": "HyperX Cloud 2 Wireless",
+        "monitor": "ASUS ROG Swift Pro PG248QP"
+      }
+    },
+    {
+      "twitchUsername": "hiko",
+      "displayName": "Hiko",
+      "riotId": {
+        "gameName": "100T Hiko",
+        "tagLine": "000",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "100T Hiko",
+          "tagLine": "poger"
+        },
+        {
+          "gameName": "100T Hiko",
+          "tagLine": "4824"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "26991127",
+      "puuid": "DpeQqOX19SpU6MbU3QDw5CakGFG_Iw_Tyj5Hu_ORAFMYJwVS_wTGNBeQwS8RhnHhtMvOeTyU1XwpFQ",
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": {
+        "mouse": "Logitech G Pro X Superlight",
+        "keyboard": "HyperX Alloy FPS Pro",
+        "headset": "HyperX Cloud II",
+        "monitor": "BenQ ZOWIE XL2546K"
+      }
+    },
+    {
+      "twitchUsername": "subroza",
+      "displayName": "Subroza",
+      "riotId": {
+        "gameName": "Subroza",
+        "tagLine": "RULT",
+        "verified": true
+      },
+      "region": "na",
+      "twitchUserId": "40965449",
+      "puuid": "V7toRgvwL3pfykKWNzmiyYa-fTMaE4SaOkI119VEOf4R5QUcdU4ZANE8zppZEmHmlgm7JQcY8ns0sw",
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "mixwell",
+      "displayName": "Mixwell",
+      "riotId": {
+        "gameName": "Mixwell",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "eu",
+      "twitchUserId": "96116107",
+      "puuid": null,
+      "avgViewers": 10000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "shanks_ttv",
+      "displayName": "shanks",
+      "riotId": {
+        "gameName": "shanks",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "540056482",
+      "puuid": null,
+      "avgViewers": 5000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "stewie2k",
+      "displayName": "Stewie2K",
+      "riotId": {
+        "gameName": "Stewie2K",
+        "tagLine": "NA2K",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "66076836",
+      "puuid": null,
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "sinatraa",
+      "displayName": "sinatraa",
+      "riotId": {
+        "gameName": "sinatraa",
+        "tagLine": "rich",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "sinatraa",
+          "tagLine": "idc"
+        },
+        {
+          "gameName": "west virginia",
+          "tagLine": "9999"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "138094916",
+      "puuid": "liz9kxUzOWAPlbhtf74GlBZbre52qhhZwFjaHlw_z1WUHQciPafTk1N3cz26CvNQRnjHG_ZNsjT26Q",
+      "avgViewers": 5000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "wardell",
+      "displayName": "WARDELL",
+      "riotId": {
+        "gameName": "TSM WARDELL",
+        "tagLine": "MATT",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "TSM WARDELL",
+          "tagLine": "MATT"
+        }
+      ],
+      "region": "na",
+      "twitchUserId": "100182904",
+      "puuid": "MeNloPnsEsS3BkpLN1nOEfnpPXBlYv0tTR2vrr4ojKT8JM0IfV_TMWdgLfsCRDIXLxGzA5xGhvVvmA",
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "prod",
+      "displayName": "PROD",
+      "riotId": {
+        "gameName": "PROD",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "174754672",
+      "puuid": null,
+      "avgViewers": 4000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "natsval",
+      "displayName": "nAts",
+      "riotId": {
+        "gameName": "Liquid nAts",
+        "tagLine": "TATAR",
+        "verified": true
+      },
+      "region": "eu",
+      "twitchUserId": "541351205",
+      "puuid": "meu6XuSd0nnrXFkZTzjpszZIIgbL8p8sRScgrUrRyPxCKP0VzgdxOq3Rd7eyvsQjm7vQjxy423hx_g",
+      "avgViewers": 2000,
+      "broadcasterType": "",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "scream",
+      "displayName": "ScreaM",
+      "riotId": {
+        "gameName": "ScreaM",
+        "tagLine": "8143",
+        "verified": true
+      },
+      "alternateRiotIds": [
+        {
+          "gameName": "Liquid ScreaM",
+          "tagLine": "1TAP"
+        },
+        {
+          "gameName": "ScreaM",
+          "tagLine": "3895"
+        }
+      ],
+      "region": "eu",
+      "twitchUserId": "39393054",
+      "puuid": "9wpExSIemTMnUgAczlCG5z9FuZyN3iXbd1WhuDoTELPJoc2jGtI-_6IUIGuzTZ8ag9z4PbqdK9vO4g",
+      "avgViewers": 4000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "demon1",
+      "displayName": "Demon1",
+      "riotId": {
+        "gameName": "Demon1",
+        "tagLine": "LFT1",
+        "verified": true
+      },
+      "region": "na",
+      "twitchUserId": "133333248",
+      "puuid": "Vc0-5wXuhzAtChMaY0ACqhjFaHzm5uluG3tKk_zVrFmOouJVRVKDjtMO4TldZMOPRhu-mHUyZuL-ZA",
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "babybay",
+      "displayName": "babybay",
+      "riotId": {
+        "gameName": "babybay",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "142728478",
+      "puuid": null,
+      "avgViewers": 2000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "officialboaster",
+      "displayName": "Boaster",
+      "riotId": {
+        "gameName": "FNATIC Boaster",
+        "tagLine": "1010",
+        "verified": false
+      },
+      "region": "eu",
+      "twitchUserId": "66963772",
+      "puuid": null,
+      "avgViewers": 2000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "sacy",
+      "displayName": "sacy",
+      "riotId": {
+        "gameName": "sacy",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "25116812",
+      "puuid": null,
+      "avgViewers": 5000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "asunaweeb",
+      "displayName": "Asuna",
+      "riotId": {
+        "gameName": "Asuna",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "48389176",
+      "puuid": null,
+      "avgViewers": 2000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "mooda",
+      "displayName": "mooda",
+      "riotId": {
+        "gameName": "mooda",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "567928581",
+      "puuid": null,
+      "avgViewers": 4000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "woohoojin",
+      "displayName": "Woohoojin",
+      "riotId": {
+        "gameName": "Woohoojin",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "24757678",
+      "puuid": null,
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    },
+    {
+      "twitchUsername": "lululuvely",
+      "displayName": "LuluLuvely",
+      "riotId": {
+        "gameName": "LuluLuvely",
+        "tagLine": "0000",
+        "verified": false
+      },
+      "region": "na",
+      "twitchUserId": "94875296",
+      "puuid": null,
+      "avgViewers": 3000,
+      "broadcasterType": "partner",
+      "peripherals": null
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-[#e8e8ec] overflow-hidden">
@@ -12,12 +14,20 @@ export default function Home() {
           <span className="text-[#e8e8ec]">STREAM</span>
           <span className="text-[#c23a2b]">REAPER</span>
         </div>
-        <a
-          href="#waitlist"
-          className="text-sm text-[#9ca3af] hover:text-[#e8e8ec] transition-colors duration-200"
-        >
-          Join waitlist →
-        </a>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/login"
+            className="text-sm text-[#9ca3af] hover:text-[#e8e8ec] transition-colors duration-200"
+          >
+            Sign in
+          </Link>
+          <a
+            href="#waitlist"
+            className="text-sm text-[#9ca3af] hover:text-[#e8e8ec] transition-colors duration-200"
+          >
+            Join waitlist →
+          </a>
+        </div>
       </nav>
 
       {/* ══════════════════════════════════════════════════════════════════
