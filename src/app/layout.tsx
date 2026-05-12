@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StreamReaper — You killed a streamer. See their reaction.",
+  title: "StreamReaper - You killed a streamer. See their reaction.",
   description:
     "StreamReaper scans your Valorant matches, finds games where you played against a streamer, and sends you a timestamped link to their Twitch VOD reaction.",
 };
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

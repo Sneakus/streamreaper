@@ -62,7 +62,7 @@ export default function LinkRiotAccount() {
       ]);
       setRiotId('');
     } catch {
-      setError('Network error — please try again.');
+      setError('Network error - please try again.');
     } finally {
       setLoading(false);
     }
@@ -161,7 +161,7 @@ export default function LinkRiotAccount() {
           <p className="text-xs text-[#6b6b7b]">
             Your Riot ID is visible in the Valorant client. It looks like{' '}
             <span className="text-[#9ca3af]">PlayerName#1234</span>. We only
-            access your post-match data — nothing else.
+            access your post-match data - nothing else.
           </p>
         </form>
       </div>

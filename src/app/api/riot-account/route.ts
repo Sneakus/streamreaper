@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "Invalid format — use GameName#TagLine (e.g. PlayerName#1234)",
+            "Invalid format - use GameName#TagLine (e.g. PlayerName#1234)",
         },
         { status: 400 },
       );

@@ -95,7 +95,7 @@ export default async function DashboardPage() {
           <h2 className="text-lg font-bold">Encounters</h2>
           <p className="mt-2 text-sm leading-relaxed text-[#9ca3af]">
             Your streamer encounters will show up here once match scanning is
-            connected. Nothing to see yet — check back after launch.
+            connected. Nothing to see yet - check back after launch.
           </p>
         </section>
       </div>

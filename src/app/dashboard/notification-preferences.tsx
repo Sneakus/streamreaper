@@ -63,7 +63,7 @@ export default function NotificationPreferences() {
       }
       setMessage("Preferences saved.");
     } catch {
-      setError("Network error — please try again.");
+      setError("Network error - please try again.");
     } finally {
       setSaving(false);
     }
@@ -91,12 +91,12 @@ export default function NotificationPreferences() {
         return;
       }
       if (data.success) {
-        setMessage("Test message sent — check your Discord channel.");
+        setMessage("Test message sent - check your Discord channel.");
       } else {
         setError(data.error ?? "Test failed");
       }
     } catch {
-      setError("Network error — please try again.");
+      setError("Network error - please try again.");
     } finally {
       setTesting(false);
     }

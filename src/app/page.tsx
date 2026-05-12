@@ -27,12 +27,12 @@ export default async function Home() {
           >
             {user ? "Dashboard" : "Sign in"}
           </Link>
-          <a
-            href="#waitlist"
+          <Link
+            href="/login"
             className="text-sm text-[#9ca3af] hover:text-[#e8e8ec] transition-colors duration-200"
           >
-            Join waitlist →
-          </a>
+            Sign Up Free
+          </Link>
         </div>
       </nav>
 
@@ -59,22 +59,22 @@ export default async function Home() {
         <p className="max-w-xl mx-auto text-lg text-[#9ca3af] leading-relaxed mb-10">
           StreamReaper scans your Valorant matches, finds games where you played
           against a streamer, and sends you a timestamped link to their Twitch
-          VOD — so you can watch the exact moment you killed them.
+          VOD - so you can watch the exact moment you killed them.
         </p>
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#waitlist"
+          <Link
+            href={user ? "/dashboard" : "/login"}
             className="px-8 py-3.5 bg-[#c23a2b] hover:bg-[#a83225] text-white font-semibold rounded-lg transition-colors duration-200 text-base"
           >
-            Join the waitlist
-          </a>
+            Get Started
+          </Link>
           <a
             href="#how-it-works"
             className="px-8 py-3.5 border border-[#2a2a3a] hover:border-[#3a3a4a] text-[#9ca3af] hover:text-[#e8e8ec] font-medium rounded-lg transition-all duration-200 text-base"
           >
-            See how it works
+            See How It Works
           </a>
         </div>
 
@@ -116,7 +116,7 @@ export default async function Home() {
               </div>
             </div>
             <p className="text-xs text-[#6b6b7b] mt-3">
-              StreamReaper — streamreaper.gg
+              StreamReaper - streamreaper.gg
             </p>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default async function Home() {
             <h3 className="text-lg font-bold mb-3">Link your Riot account</h3>
             <p className="text-sm text-[#9ca3af] leading-relaxed">
               Sign in with Discord and connect your Valorant account via Riot
-              Sign On. We only access your post-match data — nothing else.
+              Sign On. We only access your post-match data - nothing else.
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export default async function Home() {
             <h3 className="text-lg font-bold mb-3">Watch their reaction</h3>
             <p className="text-sm text-[#9ca3af] leading-relaxed">
               Get a Discord or email notification with a timestamped link that
-              drops you right into the streamer&apos;s VOD — 30 seconds before the
+              drops you right into the streamer&apos;s VOD - 30 seconds before the
               kill.
             </p>
           </div>
@@ -244,7 +244,7 @@ export default async function Home() {
           {[
             {
               title: 'Push notifications',
-              desc: "No need to search for clips. StreamReaper sends you a notification the moment it finds an encounter — via Discord webhook or email.",
+              desc: "No need to search for clips. StreamReaper sends you a notification the moment it finds an encounter - via Discord webhook or email.",
               icon: '🔔',
             },
             {
@@ -259,7 +259,7 @@ export default async function Home() {
             },
             {
               title: 'Gear Check',
-              desc: "See what peripherals the streamer uses — mouse, keyboard, headset — with links to grab the same setup.",
+              desc: "See what peripherals the streamer uses - mouse, keyboard, headset - with links to grab the same setup.",
               icon: '🖱️',
             },
             {

@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
           {
             success: false,
             error:
-              "Invalid webhook URL — must start with https://discord.com/api/webhooks/",
+              "Invalid webhook URL - must start with https://discord.com/api/webhooks/",
           },
           { status: 400 },
         );
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "Invalid webhook URL — must start with https://discord.com/api/webhooks/",
+            "Invalid webhook URL - must start with https://discord.com/api/webhooks/",
         },
         { status: 400 },
       );
