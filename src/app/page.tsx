@@ -343,12 +343,6 @@ export default async function Home() {
               <span className="text-[#c23a2b]">REAPER</span>
             </div>
             <div className="flex gap-6 text-sm text-[#6b6b7b]">
-              <a href="#" className="hover:text-[#9ca3af] transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="hover:text-[#9ca3af] transition-colors">
-                Terms
-              </a>
               <a
                 href="https://x.com/StreamReaperGG"
                 className="hover:text-[#9ca3af] transition-colors"
